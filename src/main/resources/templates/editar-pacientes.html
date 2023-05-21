@@ -1,0 +1,93 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{fragments::html-head}"/>
+<body>
+    <!-- Menu -->
+    <section>
+        <div th:replace="~{fragments::html-menu}"/>
+    </section>
+    <!-- Msg alertas -->
+    <section>
+        <div th:replace="~{fragments::html-msg-alerta}"/>
+    </section>
+    <section id="RegistarPaciente">
+        <div class="container" style="padding-top: 2%">
+            <!-- titulo -->
+            <div th:replace="~{fragments::html-title-editar}"/>
+            <!-- Formulario -->
+            <form th:action="@{/pacientes/actualizar}" th:object="${paciente}" method="post">
+                <!-- primera columna -->
+                <div class="form-row ">
+                    <!-- ID -->
+                    <div class="col-lg-6" hidden>
+                        <label></label>
+                        <input th:field="*{cod_paciente}" type="text" th:placeholder="ID" class="form-control" readonly>
+                    </div>
+                    <!-- nombre -->
+                    <div class="col-lg-6">
+                        <label></label>
+                        <input th:field="*{nombre}" type="text" th:placeholder="Nombre" class="form-control">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errorclass="error"
+                               th:errors="*{nombre}"></small>
+                    </div>
+                    <!-- apellido -->
+                    <div class="col-lg-6">
+                        <label></label>
+                        <input th:field="*{apellidos}" th:placeholder="Apellido" type="text" class="form-control">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('apellidos')}" th:errorclass="error"
+                               th:errors="*{apellidos}"></small>
+                    </div>
+                    <!-- movil -->
+                    <div class="col-lg-6">
+                        <label></label>
+                        <input th:field="*{mobile}" th:placeholder="Móvil" type="text" class="form-control">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('mobile')}" th:errorclass="error"
+                               th:errors="*{mobile}"></small>
+                    </div>
+                    <!-- direccion -->
+                    <div class="col-lg-6">
+                        <label></label>
+                        <input th:field="*{direccion}" th:placeholder="Dirección" type="text" class="form-control">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('direccion')}" th:errorclass="error"
+                               th:errors="*{direccion}"></small>
+                    </div>
+                    <!-- fecha nacimiento -->
+                    <div class="col-lg-6">
+                        <label></label>
+                        <input th:field="*{fechaNac}" th:placeholder="'Fecha nacimiento'" type="date" class="form-control">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('fechaNac')}" th:errorclass="error"
+                               th:errors="*{fechaNac}"></small>
+                    </div>
+                    <!-- codigo postal -->
+                    <div class="col-lg-6">
+                        <label></label>
+                        <input th:field="*{codPostal}" th:placeholder="'Codigo postal'" type="text" class="form-control">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('codPostal')}" th:errorclass="error"
+                               th:errors="*{codPostal}"></small>
+                    </div>
+                    <!-- provincia -->
+                    <div class="col-lg-6">
+                        <label></label>
+                        <input th:field="*{provincia}" th:placeholder="Provincia" type="text" class="form-control">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('provincia')}" th:errorclass="error"
+                               th:errors="*{provincia}"></small>
+                    </div>
+                    <!-- poblacion -->
+                    <div class="col-lg-6">
+                        <label></label>
+                        <input th:field="*{poblacion}" th:placeholder="Poblacion" type="text" class="form-control">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('poblacion')}" th:errorclass="error"
+                               th:errors="*{poblacion}"></small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-lg">
+                        <label></label>
+                        <button type="submit" class="btn btn-outline-primary btn-lg btn-block">Actualizar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

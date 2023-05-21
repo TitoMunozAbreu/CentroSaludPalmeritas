@@ -1,0 +1,55 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{fragments::html-head}"/>
+<body>
+    <!-- Menu -->
+    <section>
+        <div th:replace="~{fragments::html-menu}"/>
+    </section>
+    <!-- Msg alertas -->
+    <section>
+        <div th:replace="~{fragments::html-msg-alerta}"/>
+    </section>
+    <!-- Registro de medicas -->
+    <section id="pacientes">
+        <div class="container" style="padding-top: 2%">
+            <!-- titulo -->
+            <h1 class="text-secondary border border-success border-top-0 border-right-0 border-left-0" th:text="${titulo}"></h1>
+            <!-- boton crear medica -->
+            <a th:href="@{/medicas/crear}" type="button" class="btn btn-outline-success btn-sm" style="margin-bottom: 1%"><i class="bi bi-person-add"></i> Añadir médico</a>
+            <!-- Listado medicas -->
+            <table class="table table-responsive-sm table-striped">
+                <!-- datos de la columna -->
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Móvil</th>
+                    <th scope="col">Especialidad</th>
+                    <th scope="col">Disponibilidad</th>
+                    <th scope="col">Pacientes asignados</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+                    <!--<th scope="col">Informe</th>-->
+                </tr>
+                </thead>
+                <!-- datos de las filas -->
+                <tbody>
+                <tr th:each="medica: ${medicas}">
+                    <th scope="row" th:text="${medica.cod_medica}"></th>
+                    <th th:text="${medica.nombre}"></th>
+                    <td th:text="${medica.apellidos}"></td>
+                    <td th:text="${medica.mobile}"></td>
+                    <td th:text="${medica.especialidadMedica}"></td>
+                    <td th:text="${medica.isDisponible()}"></td>
+                    <td th:text="${medica.getCantPacientesAsignados}"></td>
+                    <td><a th:href="@{/medicas/{id}/editar(id=${medica.cod_medica})}" class="btn btn-outline-primary btn-sm" ><i class="bi bi-pencil"></i></a></i></td>
+                    <td><a th:onclick= "'eliminarMedica(' + ${medica.cod_medica} + ')'" class="btn btn-outline-danger btn-sm" ><i class="bi bi-trash3"></i></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</body>
+</html>

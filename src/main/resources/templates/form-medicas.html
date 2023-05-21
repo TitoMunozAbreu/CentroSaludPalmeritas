@@ -1,0 +1,68 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{fragments::html-head}"/>
+<body>
+    <!-- Menu -->
+    <section>
+        <div th:replace="~{fragments::html-menu}"/>
+    </section>
+    <!-- Msg alertas -->
+    <section>
+        <div th:replace="~{fragments::html-msg-alerta}"/>
+    </section>
+    <section id="RegistrarMedica">
+        <div class="container" style="padding-top: 2%">
+            <!-- titulo -->
+            <div th:replace="~{fragments::html-title-registrar}"/>
+            <!-- Formulario -->
+            <form th:action="@{/medicas/guardar}" th:object="${medica}" method="post">
+                <!-- primera columna -->
+                <div class="form-row ">
+                    <!-- ID -->
+                    <div class="col-lg-6" hidden>
+                        <label></label>
+                        <input th:field="*{cod_medica}" type="text" th:placeholder="ID" class="form-control" readonly>
+                    </div>
+                    <!-- nombre -->
+                    <div class="col-lg-6" >
+                        <label></label>
+                        <input th:field="*{nombre}" type="text" th:placeholder="Nombre" class="form-control">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errorclass="error"
+                               th:errors="*{nombre}"></small>
+                    </div>
+                    <!-- apellido -->
+                    <div class="col-lg-6">
+                        <label></label>
+                        <input th:field="*{apellidos}" th:placeholder="Apellido" type="text" class="form-control">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('apellidos')}" th:errorclass="error"
+                               th:errors="*{apellidos}"></small>
+                    </div>
+                    <!-- movil -->
+                    <div class="col-lg-6">
+                        <label></label>
+                        <input th:field="*{mobile}" th:placeholder="Móvil" type="text" class="form-control">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('mobile')}" th:errorclass="error"
+                               th:errors="*{mobile}"></small>
+                    </div>
+                    <!-- especialidad -->
+                    <div class="col-lg-6">
+                        <label></label>
+                        <select class="custom-select" th:field="*{especialidadMedica}">
+                                <option value="">Selecciona especialidad</option>
+                                <option th:each="especialidad : ${especialidades}"
+                                        th:text="${especialidad.name()}"
+                                        th:value="${especialidad}"/>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-lg">
+                        <label></label>
+                        <button type="submit" class="btn btn-outline-success btn-lg btn-block">Crear</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.app.centrosaludpalmeritas"},{"l":"com.app.centrosaludpalmeritas.controllers"},{"l":"com.app.centrosaludpalmeritas.entities"},{"l":"com.app.centrosaludpalmeritas.repositories"},{"l":"com.app.centrosaludpalmeritas.services"}];updateSearchResults();
